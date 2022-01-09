@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(project_template)
+project(glad)
 
 # Modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake)
@@ -9,10 +9,10 @@ include(Dependencies)
 # Sources
 file(GLOB_RECURSE SOURCES
 	 "include/*.h"
-	 "src/*.cpp")
+	 "src/*.c")
 
 # Target
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 # Flags
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -27,7 +27,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE
-						   ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME})
+						   ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Dependencies
 set(FETCHCONTENT_QUIET OFF)
